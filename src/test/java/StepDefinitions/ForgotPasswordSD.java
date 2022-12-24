@@ -1,25 +1,26 @@
 package StepDefinitions;
 
+import POM.ForgotPassword;
 import POM.HomePage;
 import POM.LoginPage;
-import POM.RegistrationPage;
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginStepDefinition {
+public class ForgotPasswordSD {
 
     WebDriver driver = null;
     HomePage home;
     LoginPage login;
-    RegistrationPage register;
+    ForgotPassword forget;
 
-    @Given("user open browser navigate to login page")
+
+
+    @Given("user opened login page")
     public void openLoginPage() throws InterruptedException {
         String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
@@ -29,33 +30,34 @@ public class LoginStepDefinition {
         Thread.sleep(2000);
         home = new HomePage(driver);
         login = new LoginPage(driver);
-        register = new RegistrationPage(driver);
+        forget = new ForgotPassword(driver);
         home.login().click();
 
     }
 
-    @When("user enter valid email")
+    @And("user click on reset password")
+    public void forgotPassword()
+    {
+        login.forgotPassword().click();
+    }
+
+    @And("user enter his email")
     public void enterEmail()
     {
-        login.userName().sendKeys("valeo@gmail.com");
+        forget.emailAddress().sendKeys("valeo@gmail.com");
     }
 
-    @And("user enter valid password")
-    public void enterPassword()
-    {
-        login.password().sendKeys("12345678");
+    @And("user click recover")
+    public void clickOnRecover(){
+        forget.recoverButton().click();
     }
 
-    @And("user click on login")
-    public void clickLoginButton()
-    {
-        login.loginButton().click();
-    }
-
-    @Then("user could login successfully and redirected to home page")
-    public void successLogin() throws InterruptedException {
+    @Then("user should receive a link to reset password")
+    public void checkRecoverMessage() throws InterruptedException {
+        String expectedResult = "Email with instructions has been sent to you.";
         Thread.sleep(2000);
-        Assert.assertEquals("https://demo.nopcommerce.com/", driver.getCurrentUrl());
+        String actualResult =  forget.getRecoverMessage().getText();
+        Assert.assertTrue(actualResult.contains(expectedResult));
     }
 
     @After

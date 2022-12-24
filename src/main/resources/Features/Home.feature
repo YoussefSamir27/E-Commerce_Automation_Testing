@@ -19,3 +19,11 @@ Feature: verify variety functions of e-commerce
     And user enter valid password
     And user click on login
     Then user could login successfully and redirected to home page
+
+
+  Scenario: User could reset his/her password successfully
+    Given user opened login page
+    And user click on reset password
+    And user enter his email
+    And user click recover
+    Then user should receive a link to reset password
