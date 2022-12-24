@@ -1,5 +1,6 @@
 package StepDefinitions;
 
+import POM.CategoryPage;
 import POM.HomePage;
 import POM.LoginPage;
 import POM.SearchPage;
@@ -7,19 +8,21 @@ import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en_scouse.An;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SearchStepDefinition {
-
+public class CategoryStepDefinition {
     WebDriver driver = null;
     HomePage home;
     LoginPage login;
     SearchPage search;
+    CategoryPage category;
 
 
-    @Given("user login to his account")
+    @Given("user is logged in to filter")
     public void loggedUser() throws InterruptedException {
         String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
@@ -30,30 +33,30 @@ public class SearchStepDefinition {
         home = new HomePage(driver);
         login = new LoginPage(driver);
         search = new SearchPage(driver);
+        category = new CategoryPage(driver);
         home.login().click();
         login.userName().sendKeys("kkk@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
 
-    @And("user enter name of product at search box")
-    public void searchOnProduct()
+    @When("user select category")
+    public void selectCategory()
     {
-        home.searchBox().clear();
-        home.searchBox().sendKeys("apple");
+        home.hoverOnCategory();
     }
 
-    @And("user click on search")
-    public void clickSearchButton()
+    @And("user filter by color")
+    public void filterByColor()
     {
-        home.searchButton().click();
+        category.redColorFilter().click();
     }
 
-    @Then("user could see the product displayed")
-    public void productIsDisplayed() throws InterruptedException {
+    @Then("products with this attribute should be displayed")
+    public void checkFiltration() throws InterruptedException {
         Thread.sleep(2000);
-        boolean expectedResult = search.appleProduct().isDisplayed();
-        Assert.assertEquals(expectedResult, true);
+        boolean actualResult = category.filteredCategory().isDisplayed();
+        Assert.assertEquals(true, actualResult);
     }
 
     @After

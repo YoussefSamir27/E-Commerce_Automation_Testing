@@ -44,7 +44,7 @@ public class RegisterStepDefinition {
     @And("user enter first name")
     public void enterFirstName()
     {
-        register.firstName().sendKeys("teto");
+        register.firstName().sendKeys("kkk");
     }
 
     @And("user enter last name")
@@ -56,7 +56,7 @@ public class RegisterStepDefinition {
     @And("user enter email")
     public void enterEmail()
     {
-        register.email().sendKeys("teto@gmail.com");
+        register.email().sendKeys("kkk@gmail.com");
     }
 
     @And("user enter password")

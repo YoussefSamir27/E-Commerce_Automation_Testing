@@ -34,3 +34,16 @@ Feature: verify variety functions of e-commerce
     And user enter name of product at search box
     And user click on search
     Then user could see the product displayed
+
+
+  Scenario: Logged user could select different Categories
+    Given user logged in to select category
+    And user hover on category and select subcategory
+    Then the selected category should be displayed
+
+
+  Scenario: Logged user could filter with color
+    Given user is logged in to filter
+    When user select category
+    And user filter by color
+    Then products with this attribute should be displayed
