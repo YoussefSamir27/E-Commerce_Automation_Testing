@@ -47,3 +47,10 @@ Feature: verify variety functions of e-commerce
     When user select category
     And user filter by color
     Then products with this attribute should be displayed
+
+
+  Scenario: Logged user could add different products to Shopping cart
+    Given user logged in to add product to cart
+    When user choose category
+    And user add product to cart
+    Then product should be added successfully to cart

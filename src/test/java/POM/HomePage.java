@@ -56,4 +56,9 @@ public class HomePage {
         action.moveToElement(subMenu);
         action.click().build().perform();
     }
+
+    public WebElement selectBookCategory()
+    {
+        return driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[5]/a"));
+    }
 }

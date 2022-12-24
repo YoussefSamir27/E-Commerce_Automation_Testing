@@ -44,7 +44,7 @@ public class ForgotPasswordSD {
     @And("user enter his email")
     public void enterEmail()
     {
-        forget.emailAddress().sendKeys("kkk@gmail.com");
+        forget.emailAddress().sendKeys("qwe@gmail.com");
     }
 
     @And("user click recover")

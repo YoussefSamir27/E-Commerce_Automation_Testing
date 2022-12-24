@@ -1,25 +1,26 @@
 package StepDefinitions;
 
-import POM.HomePage;
-import POM.LoginPage;
-import POM.SearchPage;
+import POM.*;
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class SearchStepDefinition {
+public class CartStepDefinition {
 
     WebDriver driver = null;
     HomePage home;
     LoginPage login;
     SearchPage search;
+    CategoryPage category;
+    CartPage cart;
 
 
-    @Given("user login to his account")
+    @Given("user logged in to add product to cart")
     public void loggedUser() throws InterruptedException {
         String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
@@ -30,30 +31,32 @@ public class SearchStepDefinition {
         home = new HomePage(driver);
         login = new LoginPage(driver);
         search = new SearchPage(driver);
+        category = new CategoryPage(driver);
+        cart = new CartPage(driver);
         home.login().click();
         login.userName().sendKeys("qwe@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
 
-    @And("user enter name of product at search box")
-    public void searchOnProduct()
+    @When("user choose category")
+    public void selectCategory()
     {
-        home.searchBox().clear();
-        home.searchBox().sendKeys("apple");
+        home.selectBookCategory().click();
     }
 
-    @And("user click on search")
-    public void clickSearchButton()
+    @And("user add product to cart")
+    public void addToCart()
     {
-        home.searchButton().click();
+        category.addToCartButton().click();
     }
 
-    @Then("user could see the product displayed")
-    public void productIsDisplayed() throws InterruptedException {
+    @Then("product should be added successfully to cart")
+    public void productAddedToCart() throws InterruptedException {
         Thread.sleep(2000);
-        boolean expectedResult = search.appleProduct().isDisplayed();
-        Assert.assertEquals(expectedResult, true);
+        String expectedResult = "The product has been added to your shopping cart";
+        String actualResult = cart.getCartMessage().getText();
+        Assert.assertTrue(actualResult.contains(expectedResult));
     }
 
     @After

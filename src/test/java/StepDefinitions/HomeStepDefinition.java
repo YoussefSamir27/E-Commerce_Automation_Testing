@@ -31,7 +31,7 @@ public class HomeStepDefinition {
         search = new SearchPage(driver);
         category = new CategoryPage(driver);
         home.login().click();
-        login.userName().sendKeys("kkk@gmail.com");
+        login.userName().sendKeys("qwe@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
