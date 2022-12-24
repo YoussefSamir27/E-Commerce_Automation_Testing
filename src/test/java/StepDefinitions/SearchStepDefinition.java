@@ -2,25 +2,25 @@ package StepDefinitions;
 
 import POM.HomePage;
 import POM.LoginPage;
-import POM.RegistrationPage;
+import POM.SearchPage;
 import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class LoginStepDefinition {
+public class SearchStepDefinition {
 
     WebDriver driver = null;
     HomePage home;
     LoginPage login;
-    RegistrationPage register;
+    SearchPage search;
 
-    @Given("user open browser navigate to login page")
-    public void openLoginPage() throws InterruptedException {
+
+    @Given("user login to his account")
+    public void loggedUser() throws InterruptedException {
         String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
         System.setProperty("webdriver.chrome.driver", chromePath);
         driver = new ChromeDriver();
@@ -29,33 +29,31 @@ public class LoginStepDefinition {
         Thread.sleep(2000);
         home = new HomePage(driver);
         login = new LoginPage(driver);
-        register = new RegistrationPage(driver);
+        search = new SearchPage(driver);
         home.login().click();
-
-    }
-
-    @When("user enter valid email")
-    public void enterEmail()
-    {
         login.userName().sendKeys("teto@gmail.com");
-    }
-
-    @And("user enter valid password")
-    public void enterPassword()
-    {
         login.password().sendKeys("12345678");
-    }
-
-    @And("user click on login")
-    public void clickLoginButton()
-    {
         login.loginButton().click();
     }
 
-    @Then("user could login successfully and redirected to home page")
-    public void successLogin() throws InterruptedException {
+    @And("user enter name of product at search box")
+    public void searchOnProduct()
+    {
+        home.searchBox().clear();
+        home.searchBox().sendKeys("apple");
+    }
+
+    @And("user click on search")
+    public void clickSearchButton()
+    {
+        home.searchButton().click();
+    }
+
+    @Then("user could see the product displayed")
+    public void productIsDisplayed() throws InterruptedException {
         Thread.sleep(2000);
-        Assert.assertEquals("https://demo.nopcommerce.com/", driver.getCurrentUrl());
+        boolean expectedResult = search.appleProduct().isDisplayed();
+        Assert.assertEquals(expectedResult, true);
     }
 
     @After
@@ -67,5 +65,4 @@ public class LoginStepDefinition {
             System.out.println("NullPointerException Thrown!");
         }
     }
-
 }

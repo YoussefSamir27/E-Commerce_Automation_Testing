@@ -31,5 +31,14 @@ public class HomePage {
         return url;
     }
 
+    public WebElement searchBox()
+    {
+        return driver.findElement(By.xpath("//*[@id=\"small-searchterms\"]"));
+    }
+
+    public WebElement searchButton()
+    {
+        return driver.findElement(By.xpath("//*[@id=\"small-search-box-form\"]/button"));
+    }
 
 }
