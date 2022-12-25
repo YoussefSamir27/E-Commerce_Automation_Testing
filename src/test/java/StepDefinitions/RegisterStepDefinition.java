@@ -56,7 +56,7 @@ public class RegisterStepDefinition {
     @And("user enter email")
     public void enterEmail()
     {
-        register.email().sendKeys("qwe@gmail.com");
+        register.email().sendKeys("yui@gmail.com");
     }
 
     @And("user enter password")

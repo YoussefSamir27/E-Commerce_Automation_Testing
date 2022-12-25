@@ -34,7 +34,7 @@ public class CartStepDefinition {
         category = new CategoryPage(driver);
         cart = new CartPage(driver);
         home.login().click();
-        login.userName().sendKeys("qwe@gmail.com");
+        login.userName().sendKeys("yui@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }

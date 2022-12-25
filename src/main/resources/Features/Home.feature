@@ -54,3 +54,11 @@ Feature: verify variety functions of e-commerce
     When user choose category
     And user add product to cart
     Then product should be added successfully to cart
+
+
+  Scenario: Logged user could add different products to Wishlist
+    Given user logged in to add product to wishlist
+    When user select any category
+    And user add product to wishlist
+    Then product should add to wishlist successfully
+
