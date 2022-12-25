@@ -62,3 +62,16 @@ Feature: verify variety functions of e-commerce
     And user add product to wishlist
     Then product should add to wishlist successfully
 
+
+  Scenario:  Logged user could add different products to compare list
+    Given user logged in to add product to compare list
+    When user select specific category
+    And user add product to compare list
+    Then the product should added to compare list successfully
+
+
+
+
+
+
+

@@ -37,7 +37,7 @@ public class LoginStepDefinition {
     @When("user enter valid email")
     public void enterEmail()
     {
-        login.userName().sendKeys("yui@gmail.com");
+        login.userName().sendKeys("yousefsamir51@gmail.com");
     }
 
     @And("user enter valid password")

@@ -17,4 +17,14 @@ public class CartPage {
     {
         return driver.findElement(By.xpath("//*[@id=\"bar-notification\"]/div/p"));
     }
+
+    public WebElement termsAndConditions()
+    {
+        return driver.findElement(By.xpath("//*[@id=\"termsofservice\"]"));
+    }
+
+    public WebElement checkoutButton()
+    {
+        return driver.findElement(By.xpath("//*[@id=\"checkout\"]"));
+    }
 }

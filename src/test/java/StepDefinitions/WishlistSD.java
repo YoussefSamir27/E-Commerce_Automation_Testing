@@ -34,7 +34,7 @@ public class WishlistSD {
         category = new CategoryPage(driver);
         list = new WishlistPage(driver);
         home.login().click();
-        login.userName().sendKeys("yui@gmail.com");
+        login.userName().sendKeys("yousefsamir51@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }

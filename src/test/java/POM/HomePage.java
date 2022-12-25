@@ -61,4 +61,9 @@ public class HomePage {
     {
         return driver.findElement(By.xpath("/html/body/div[6]/div[2]/ul[1]/li[5]/a"));
     }
+
+    public WebElement cartPageButton()
+    {
+        return driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a"));
+    }
 }

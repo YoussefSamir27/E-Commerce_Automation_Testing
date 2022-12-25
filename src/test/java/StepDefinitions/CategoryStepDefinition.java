@@ -35,7 +35,7 @@ public class CategoryStepDefinition {
         search = new SearchPage(driver);
         category = new CategoryPage(driver);
         home.login().click();
-        login.userName().sendKeys("yui@gmail.com");
+        login.userName().sendKeys("yousefsamir51@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
