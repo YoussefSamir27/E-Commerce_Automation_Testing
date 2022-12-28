@@ -1,37 +1,25 @@
 package StepDefinitions;
 
 import POM.HomePage;
-import POM.LoginPage;
 import POM.RegistrationPage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+
+import static StepDefinitions.Hooks.driver;
+
 
 public class RegisterStepDefinition {
 
-    WebDriver driver = null;
-    HomePage home;
-    LoginPage login;
-    RegistrationPage register;
+    HomePage home = new HomePage(driver);
+    RegistrationPage register = new RegistrationPage(driver);
 
-    @Given("user open browser navigate to registration page")
-    public void openRegistrationPage() throws InterruptedException {
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-        driver = new ChromeDriver();
-        driver.navigate().to("https://demo.nopcommerce.com/");
-        driver.manage().window().maximize();
-        Thread.sleep(2000);
-        home = new HomePage(driver);
-        login = new LoginPage(driver);
-        register = new RegistrationPage(driver);
+    @Given("user navigate to registration page")
+    public void openRegistrationPage() {
         home.register().click();
-
     }
 
 
@@ -56,7 +44,7 @@ public class RegisterStepDefinition {
     @And("user enter email")
     public void enterEmail()
     {
-        register.email().sendKeys("yousefsamir51@gmail.com");
+        register.email().sendKeys("yousseftest@gmail.com");
     }
 
     @And("user enter password")
@@ -85,14 +73,4 @@ public class RegisterStepDefinition {
         Assert.assertTrue(actualResult.contains(expectedResult));
     }
 
-    @After
-    public void close()
-    {
-        try{
-            driver.quit();
-        }catch (NullPointerException e) {
-            System.out.println("NullPointerException Thrown!");
-        }
-
-    }
 }

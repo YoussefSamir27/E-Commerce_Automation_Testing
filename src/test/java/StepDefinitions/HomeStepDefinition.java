@@ -1,37 +1,27 @@
 package StepDefinitions;
 
 import POM.*;
-import io.cucumber.java.After;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+
+import static StepDefinitions.Hooks.driver;
+
 
 public class HomeStepDefinition {
 
-    WebDriver driver = null;
-    HomePage home;
-    LoginPage login;
-    SearchPage search;
-    CategoryPage category;
+    HomePage home = new HomePage(driver);
+    CategoryPage category = new CategoryPage(driver);
+    LoginPage login = new LoginPage(driver);
 
 
     @Given("user logged in to select category")
-    public void loggedUser() throws InterruptedException {
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-        driver = new ChromeDriver();
-        driver.navigate().to("https://demo.nopcommerce.com/");
-        driver.manage().window().maximize();
-        Thread.sleep(2000);
-        home = new HomePage(driver);
-        login = new LoginPage(driver);
-        search = new SearchPage(driver);
-        category = new CategoryPage(driver);
+    public void loggedUser(){
         home.login().click();
-        login.userName().sendKeys("yousefsamir51@gmail.com");
+        login.userName().sendKeys("yousseftest@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
@@ -49,13 +39,4 @@ public class HomeStepDefinition {
         Assert.assertEquals(true, actualResult);
     }
 
-    @After
-    public void close()
-    {
-        try{
-            driver.quit();
-        }catch (NullPointerException e) {
-            System.out.println("NullPointerException Thrown!");
-        }
-    }
 }

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="0" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="9" time="263.401">
+<testcase classname="verify register functionality" name="User could register with valid data" time="75.144">
+<system-out><![CDATA[Given user navigate to registration page....................................passed
+When user choose gender.....................................................passed
+And user enter first name...................................................passed
+And user enter last name....................................................passed
+And user enter email........................................................passed
+And user enter password.....................................................passed
+And user confirm password...................................................passed
+Then user could register successfully.......................................passed
+And receive success message.................................................passed
+]]></system-out>
+</testcase>
+<testcase classname="Verify login Functionality" name="User could log in with valid email and password" time="22.538">
+<system-out><![CDATA[Given user to login page....................................................passed
+When user enter valid email.................................................passed
+And user enter valid password...............................................passed
+And user click on login.....................................................passed
+Then user could login successfully and redirected to home page..............passed
+]]></system-out>
+</testcase>
+<testcase classname="verify reset password functionality" name="User could reset his/her password successfully" time="26.39">
+<system-out><![CDATA[Given user opened login page................................................passed
+And user click on reset password............................................passed
+And user enter his email....................................................passed
+And user click recover......................................................passed
+Then user should receive a link to reset password...........................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify search function" name="Logged User could search for any product" time="26.049">
+<system-out><![CDATA[Given user login to his account.............................................passed
+And user enter name of product at search box................................passed
+And user click on search....................................................passed
+Then user could see the product displayed...................................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify category functionality" name="Logged user could select different Categories" time="16.296">
+<system-out><![CDATA[Given user logged in to select category.....................................passed
+And user hover on category and select subcategory...........................passed
+Then the selected category should be displayed..............................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify filtration functionality" name="Logged user could filter with color" time="18.119">
+<system-out><![CDATA[Given user is logged in to filter...........................................passed
+When user select category...................................................passed
+And user filter by color....................................................passed
+Then products with this attribute should be displayed.......................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify cart functionality" name="Logged user could add different products to Shopping cart" time="26.26">
+<system-out><![CDATA[Given user logged in to add product to cart.................................passed
+When user choose category...................................................passed
+And user add product to cart................................................passed
+Then product should be added successfully to cart...........................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify wishlist functionality" name="Logged user could add different products to Wishlist" time="27.237">
+<system-out><![CDATA[Given user logged in to add product to wishlist.............................passed
+When user select any category...............................................passed
+And user add product to wishlist............................................passed
+Then product should add to wishlist successfully............................passed
+]]></system-out>
+</testcase>
+<testcase classname="verify compare list functionality" name="Logged user could add different products to compare list" time="23.669">
+<system-out><![CDATA[Given user logged in to add product to compare list.........................passed
+When user select specific category..........................................passed
+And user add product to compare list........................................passed
+Then the product should added to compare list successfully..................passed
+]]></system-out>
+</testcase>
+</testsuite>

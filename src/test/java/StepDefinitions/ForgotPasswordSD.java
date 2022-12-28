@@ -3,36 +3,23 @@ package StepDefinitions;
 import POM.ForgotPassword;
 import POM.HomePage;
 import POM.LoginPage;
-import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+
+import static StepDefinitions.Hooks.driver;
 
 public class ForgotPasswordSD {
 
-    WebDriver driver = null;
-    HomePage home;
-    LoginPage login;
-    ForgotPassword forget;
-
-
+    HomePage home = new HomePage(driver);
+    LoginPage login = new LoginPage(driver);
+    ForgotPassword forget = new ForgotPassword(driver);
 
     @Given("user opened login page")
-    public void openLoginPage() throws InterruptedException {
-        String chromePath = System.getProperty("user.dir") + "\\src\\main\\resources\\chromedriver.exe";
-        System.setProperty("webdriver.chrome.driver", chromePath);
-        driver = new ChromeDriver();
-        driver.navigate().to("https://demo.nopcommerce.com/");
-        driver.manage().window().maximize();
-        Thread.sleep(2000);
-        home = new HomePage(driver);
-        login = new LoginPage(driver);
-        forget = new ForgotPassword(driver);
+    public void openLoginPage(){
         home.login().click();
-
     }
 
     @And("user click on reset password")
@@ -44,7 +31,7 @@ public class ForgotPasswordSD {
     @And("user enter his email")
     public void enterEmail()
     {
-        forget.emailAddress().sendKeys("yousefsamir51@gmail.com");
+        forget.emailAddress().sendKeys("yousseftest@gmail.com");
     }
 
     @And("user click recover")
@@ -60,14 +47,5 @@ public class ForgotPasswordSD {
         Assert.assertTrue(actualResult.contains(expectedResult));
     }
 
-    @After
-    public void close()
-    {
-        try{
-            driver.quit();
-        }catch (NullPointerException e) {
-            System.out.println("NullPointerException Thrown!");
-        }
-    }
 
 }
