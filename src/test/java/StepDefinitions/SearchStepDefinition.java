@@ -21,7 +21,7 @@ public class SearchStepDefinition {
     @Given("user login to his account")
     public void loggedUser() {
         home.login().click();
-        login.userName().sendKeys("yousseftest@gmail.com");
+        login.userName().sendKeys("youssefsamir@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }

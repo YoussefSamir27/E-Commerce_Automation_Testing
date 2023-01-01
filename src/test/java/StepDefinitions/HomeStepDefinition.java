@@ -21,7 +21,7 @@ public class HomeStepDefinition {
     @Given("user logged in to select category")
     public void loggedUser(){
         home.login().click();
-        login.userName().sendKeys("yousseftest@gmail.com");
+        login.userName().sendKeys("youssefsamir@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }

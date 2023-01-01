@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class HomePage {
 
@@ -65,5 +66,16 @@ public class HomePage {
     public WebElement cartPageButton()
     {
         return driver.findElement(By.xpath("//*[@id=\"topcartlink\"]/a"));
+    }
+
+    public void selectEuroCurrency()
+    {
+        Select currency = new Select(driver.findElement(By.name("customerCurrency")));
+        currency.selectByIndex(1);
+    }
+
+    public WebElement validateCurrency()
+    {
+        return driver.findElement(By.xpath("/html/body/div[6]/div[3]/div/div/div/div/div[4]/div[2]/div[1]/div/div[2]/div[3]/div[1]/span"));
     }
 }

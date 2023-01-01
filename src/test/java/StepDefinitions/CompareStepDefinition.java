@@ -22,7 +22,7 @@ public class CompareStepDefinition {
     @Given("user logged in to add product to compare list")
     public void loggedUser(){
         home.login().click();
-        login.userName().sendKeys("yousseftest@gmail.com");
+        login.userName().sendKeys("youssefsamir@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }

@@ -1,50 +1,48 @@
 package StepDefinitions;
 
-import POM.*;
+import POM.CategoryPage;
+import POM.HomePage;
+import POM.LoginPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.junit.Assert;
-
 
 import static StepDefinitions.Hooks.driver;
 
 
-public class CartStepDefinition {
+public class SelectTagsSD {
 
     HomePage home = new HomePage(driver);
-    LoginPage login = new LoginPage(driver);
     CategoryPage category = new CategoryPage(driver);
-    CartPage cart = new CartPage(driver);
+    LoginPage login = new LoginPage(driver);
 
-
-    @Given("user logged in to add product to cart")
-    public void loggedUser(){
+    @Given("user login")
+    public void loginToWebsite()
+    {
         home.login().click();
         login.userName().sendKeys("youssefsamir@gmail.com");
         login.password().sendKeys("12345678");
         login.loginButton().click();
     }
 
-    @When("user choose category")
+    @And("user choose specific category")
     public void selectCategory()
     {
         home.selectBookCategory().click();
     }
 
-    @And("user add product to cart")
-    public void addToCart()
+    @And("user select any tag")
+    public void selectTag()
     {
-        category.addToCartButton().click();
+        category.computerTag().click();
     }
 
-    @Then("product should be added successfully to cart")
-    public void productAddedToCart() throws InterruptedException {
+    @Then("this tag page should be opened successfully")
+    public void validateSuccessTag() throws InterruptedException {
         Thread.sleep(2000);
-        String expectedResult = "The product has been added to your shopping cart";
-        String actualResult = cart.getCartMessage().getText();
+        String expectedResult = "Products tagged with \'computer\'";
+        String actualResult = category.getMessageOfTag().getText();
         Assert.assertTrue(actualResult.contains(expectedResult));
     }
-
 }
